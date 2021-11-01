@@ -84,8 +84,10 @@ class ResNet(nn.Module):
     def _make_layer(self, num_blocks, in_channels, inter_channels, stride):
         layers = []
         if stride != 1 or in_channels != inter_channels * 2:
-            downsample_identity = conv1x1(
+            downsample_identity = nn.Sequential(conv1x1(
                 in_ch=in_channels, out_ch=inter_channels * 4, stride=stride
+            ), 
+            nn.BatchNorm2d(inter_channels * 4)
             )
             layer = BottleNeck(
                 in_channels=in_channels,
