@@ -67,7 +67,7 @@ class ResNet(nn.Module):
                 padding=3,
             ),
             nn.BatchNorm2d(self.out_channels),
-            nn.MaxPool2d(kernel_size=(3, 3), stride=2),
+            nn.MaxPool2d(kernel_size=(3, 3), stride=2, padding=1),
             nn.ReLU(inplace=True),
         )
 
