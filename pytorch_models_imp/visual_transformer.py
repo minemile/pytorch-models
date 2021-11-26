@@ -1,6 +1,6 @@
 import torch
-from torch._C import set_anomaly_enabled
 import torch.nn as nn
+from torch._C import set_anomaly_enabled
 
 
 class PatchEmbeddings(nn.Module):

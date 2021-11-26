@@ -1,5 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+data/
+.vscode/
+model_outputs/
 *.py[cod]
 *$py.class
 
