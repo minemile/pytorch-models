@@ -51,8 +51,12 @@ def create_datasetloader(is_train, shuffle, root, transform, batch_size, num_wor
         root=root, train=is_train, download=True, transform=transform
     )
     loader = torch.utils.data.DataLoader(
-        imageset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers,
-        pin_memory=True, persistent_workers=False
+        imageset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        num_workers=num_workers,
+        pin_memory=True,
+        persistent_workers=False,
     )
     return loader
 
@@ -124,14 +128,14 @@ if __name__ == "__main__":
         )
 
     loss_f = nn.CrossEntropyLoss()
-    # optimizer = torch.optim.Adam(
-    # vision_transformer.parameters(), args.learning_rate, weight_decay=1e-5
+    # optimizer = torch.optim.AdamW(
+    #     vision_transformer.parameters(), args.learning_rate, weight_decay=1e-5
     # )
     optimizer = torch.optim.SGD(
-        vision_transformer.parameters(),
-        lr=args.learning_rate,
-        momentum=0.9,
-        weight_decay=1e-5,
+    vision_transformer.parameters(),
+    lr=args.learning_rate,
+    momentum=0.9,
+    weight_decay=1e-5,
     )
     pct_start = 0.05
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
@@ -147,7 +151,9 @@ if __name__ == "__main__":
         f"There is {total_steps} steps. For warmup there is {total_steps * pct_start} steps"
     )
     epochs = int(total_steps / len(train_loader))
-    print(f"It will take {epochs} epochs for {total_steps} steps with {len(train_loader)} step")
+    print(
+        f"It will take {epochs} epochs for {total_steps} steps with {len(train_loader)} step"
+    )
 
     vision_transformer.to(device)
     vision_transformer = nn.DataParallel(vision_transformer)
