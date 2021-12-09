@@ -10,6 +10,7 @@ import torchvision
 import torchvision.transforms as transforms
 
 from pytorch_models_imp.visual_transformer import VisionTransformer
+from torchinfo import summary
 
 cudnn.benchmark = True
 IMAGE_SIZE = 224
@@ -126,17 +127,22 @@ if __name__ == "__main__":
             NUM_LAYERS,
             DROPOUT,
         )
+        
+    summary(
+        vision_transformer, input_size=(args.batch_size, 3, IMAGE_SIZE, IMAGE_SIZE)
+    )
 
     loss_f = nn.CrossEntropyLoss()
     # optimizer = torch.optim.AdamW(
     #     vision_transformer.parameters(), args.learning_rate, weight_decay=1e-5
     # )
     optimizer = torch.optim.SGD(
-    vision_transformer.parameters(),
-    lr=args.learning_rate,
-    momentum=0.9,
-    weight_decay=1e-5,
+        vision_transformer.parameters(),
+        lr=args.learning_rate,
+        momentum=0.9,
+        weight_decay=1e-5,
     )
+
     pct_start = 0.05
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
         optimizer,
