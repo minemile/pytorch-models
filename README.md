@@ -8,3 +8,4 @@ Currently implemented:
 - [Visual Transformer (ViT)](https://arxiv.org/pdf/2010.11929.pdf)
 - [NLP Transformer (Attention is all you need)](https://arxiv.org/abs/1706.03762)
 - [Swin Transformer: Hierarchical Vision Transformer using Shifted Windows](https://arxiv.org/abs/2103.14030)
+- [SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers](https://arxiv.org/abs/2105.15203)
